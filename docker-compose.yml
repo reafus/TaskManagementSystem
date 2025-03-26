@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: task_user
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: task_db
+    ports:
+      - 5433:5432
+    networks:
+      - task_api_network
+    restart: unless-stopped
+
+networks:
+  task_api_network:
+    driver: bridge
+volumes:
+  postgres:
+    driver: local
